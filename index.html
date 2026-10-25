@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Ruchi! 💗</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  color: #773c66;
+  text-align: center;
+  background: linear-gradient(135deg, #ffe2ed, #f1ddff, #fff1d9);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+main {
+  width: 92%;
+  max-width: 600px;
+  margin: auto;
+  padding: 35px 0;
+}
+
+h1 {
+  font-size: clamp(36px, 9vw, 55px);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 27px;
+}
+
+p {
+  font: 16px/1.8 Arial, sans-serif;
+}
+
+.card {
+  background: #ffffffd9;
+  padding: 25px 20px;
+  margin: 22px 0;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px #a64f7918;
+  border: 1px solid #ffffff;
+}
+
+button, input {
+  border: none;
+  border-radius: 25px;
+  padding: 14px 18px;
+  margin: 7px;
+  font-size: 15px;
+}
+
+button {
+  background: #d84f91;
+  color: white;
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+button:hover {
+  transform: scale(1.04);
+}
+
+input {
+  width: 85%;
+  max-width: 300px;
+  background: white;
+  border: 1px solid #f0bfd9;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.big {
+  font-size: 75px;
+  animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  50% { transform: translateY(-10px); }
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 15px;
+  background: #f8d9e9;
+}
+
+.caption {
+  font: 13px Arial, sans-serif;
+}
+
+.heart {
+  position: fixed;
+  bottom: -40px;
+  pointer-events: none;
+  animation: rise 5s linear forwards;
+  z-index: 10;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+#letter {
+  white-space: pre-line;
+  text-align: left;
+  font: 15px/1.9 Arial, sans-serif;
+}
+
+#final {
+  animation: appear 1s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+  font: 12px Arial, sans-serif;
+  padding: 25px 0;
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+<!-- WELCOME SCREEN -->
+
+<section id="welcome">
+  <p>✨ A LITTLE SURPRISE MADE JUST FOR YOU ✨</p>
+
+  <div class="big">🎀</div>
+
+  <h1>Happy Birthday,<br>Ruchi! 💗</h1>
+
+  <p>
+    Today is your day, birthday girl! 🎂<br>
+    I've made a little something for you.<br>
+    Ready to discover your surprise?
+  </p>
+
+  <p>🌸 25 October 🌸</p>
+
+  <button onclick="show('lock')">
+    Open Your Surprise 🎁
+  </button>
+</section>
+
+
+<!-- SECRET PASSWORD -->
+
+<section id="lock" class="card hidden">
+
+  <div class="big">🔐</div>
+
+  <h2>Wait a Second, Ruchi! 💗</h2>
+
+  <p>
+    Before entering your little world,<br>
+    answer this tiny secret!
+  </p>
+
+  <input
+    id="password"
+    placeholder="Enter our secret word..."
+    autocomplete="off"
+  >
+
+  <br>
+
+  <button onclick="unlock()">
+    Unlock My Surprise 💌
+  </button>
+
+  <p id="error"></p>
+
+</section>
+
+
+<!-- MAIN SURPRISE -->
+
+<section id="surprise" class="hidden">
+
+  <div class="card">
+
+    <div class="big">🎂</div>
+
+    <h2>It's YOUR Day, Ruchi!</h2>
+
+    <p>
+      Today, the world gets another year of YOU! 🌷
+      <br><br>
+      More laughter, more adventures, more silly
+      conversations, and more memories to make.
+      <br><br>
+      And yes, more opportunities for me to annoy you. 😂💗
+    </p>
+
+  </div>
+
+
+  <!-- MUSIC PLAYER -->
+
+  <div class="card">
+
+    <h2>🎵 A Little Birthday Music</h2>
+
+    <p>
+      Every birthday needs a soundtrack! 🎶
+    </p>
+
+    <audio id="music" src="music.mp3" loop></audio>
+
+    <button onclick="toggleMusic()" id="musicButton">
+      ▶ Play Music
+    </button>
+
+    <p id="musicStatus" class="caption">
+      Add your chosen audio file as music.mp3.
+    </p>
+
+  </div>
+
+
+  <!-- PHOTO GALLERY -->
+
+  <div class="card">
+
+    <h2>📸 Our Little Memory Lane</h2>
+
+    <p>
+      Four pictures, countless memories,
+      and a friendship worth celebrating. 💕
+    </p>
+
+    <div class="gallery">
+
+      <div>
+        <img src="photo1.jpg" alt="Memory one">
+        <p class="caption">The good times 🌸</p>
+      </div>
+
+      <div>
+        <img src="photo2.jpg" alt="Memory two">
+        <p class="caption">Our silly moments 😂</p>
+      </div>
+
+      <div>
+        <img src="photo3.jpg" alt="Memory three">
+        <p class="caption">A favourite memory 💗</p>
+      </div>
+
+      <div>
+        <img src="photo4.jpg" alt="Memory four">
+        <p class="caption">More to come ✨</p>
+      </div>
+
+    </div>
+
+    <p class="caption">
+      These pictures are waiting for your own memories.
+    </p>
+
+  </div>
+
+
+  <!-- FRIENDSHIP QUIZ -->
+
+  <div class="card">
+
+    <h2>😂 Ruchi's Friendship Quiz</h2>
+
+    <p>
+      What is the most accurate description
+      of our friendship?
+    </p>
+
+    <button onclick="answer('A')">
+      A. Endless random talks
+    </button>
+
+    <button onclick="answer('B')">
+      B. Teasing each other 😂
+    </button>
+
+    <button onclick="answer('C')">
+      C. All of the above!
+    </button>
+
+    <p id="quizResult"></p>
+
+    <p>
+      Bonus question: Who is more dramatic? 👀
+    </p>
+
+    <button onclick="bonus('me')">Definitely you 😂</button>
+
+    <button onclick="bonus('you')">Obviously me 😭</button>
+
+    <p id="bonusResult"></p>
+
+  </div>
+
+
+  <!-- SECRET LETTER -->
+
+  <div class="card">
+
+    <div class="big">💌</div>
+
+    <h2>A Letter Just for You</h2>
+
+    <p>
+      Okay, jokes aside... there's something
+      I genuinely want you to know.
+    </p>
+
+    <button onclick="openLetter()">
+      Open Your Letter 💗
+    </button>
+
+    <p id="letter" class="hidden"></p>
+
+  </div>
+
+
+  <!-- VIRTUAL GIFT -->
+
+  <div class="card">
+
+    <h2>Your Virtual Birthday Gift 🎁</h2>
+
+    <div class="big" id="gift">🎁</div>
+
+    <p>
+      A little gift is waiting for you.
+    </p>
+
+    <button onclick="openGift()">
+      Open Your Gift!
+    </button>
+
+    <p id="giftMessage" class="hidden">
+      💝 SURPRISE! 💝
+
+      <br><br>
+
+      Your gift is a lifetime supply of laughter,
+      silly conversations, happy memories,
+      and someone who will keep annoying you
+      with absolutely no warning. 😂
+
+      <br><br>
+
+      Redeemable for unlimited friendship! 💗
+    </p>
+
+  </div>
+
+
+  <!-- FINAL CELEBRATION -->
+
+  <div class="card">
+
+    <div class="big">🎂</div>
+
+    <h2>One Last Birthday Wish...</h2>
+
+    <p>
+      Close your eyes for a moment,
+      think of something you've been wishing for,
+      and tap the button below. ✨
+    </p>
+
+    <button onclick="celebrate()">
+      Make Your Birthday Wish 🌟
+    </button>
+
+    <div id="final" class="hidden">
+
+      <div class="big">🎉💗🎉</div>
+
+      <h1>HAPPY BIRTHDAY, RUCHI!</h1>
+
+      <p>
+        May this new chapter bring you beautiful
+        opportunities, genuine happiness,
+        exciting adventures, and countless reasons
+        to smile.
+        <br><br>
+        Never stop being the funny, wonderful,
+        unique person you are.
+        <br><br>
+        Keep dreaming big. Keep laughing loudly.
+        Keep making memories.
+        <br><br>
+        And please remember that your birthday
+        is a reminder of how much happiness
+        one person can bring into the world. 🌷
+      </p>
+
+      <div class="big">🫶🏻</div>
+
+      <h2>Stay Amazing, Ruchi! 💗</h2>
+
+      <p>
+        Made especially for you,<br>
+        by your favourite troublemaker. 😂🎀
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  A tiny website, a big birthday wish. 💗
+  <br><br>
+  Made with love for Ruchi.
+</footer>
+
+</main>
+
+
+<script>
+
+// PERSONAL SETTINGS
+
+const FRIEND_NAME = "Ruchika";
+
+// Change this to your own secret word.
+const SECRET_PASSWORD = "bestie";
+
+const BIRTHDAY_LETTER = `Dear Ruchi, 💗
+
+First of all, HAPPY BIRTHDAY! 🎂🎀
+
+Honestly, I don't even know where to begin.
+
+Our friendship has its own little world.
+The random conversations, the stupid jokes,
+the teasing, the unexpected laughs, and all
+those moments that somehow become memories.
+
+Sometimes friendship is about laughing until
+nothing makes sense. Sometimes it's about
+having someone who makes ordinary days better.
+
+And sometimes it's simply about being yourself
+around someone without having to pretend.
+
+I'm genuinely glad we've shared our friendship.
+I hope life brings you wonderful opportunities,
+peaceful days, exciting adventures, and people
+who appreciate the person you are.
+
+Never underestimate your own potential.
+Never stop chasing the things that make you happy.
+And never feel that you have to be someone else
+to be worthy of good things.
+
+Of course, don't let this emotional message
+make you too proud. I still reserve the right
+to annoy you whenever I want. 😂
+
+Jokes aside, I hope this birthday becomes
+the beginning of a beautiful chapter in your life.
+
+May you laugh more, worry less, achieve your goals,
+and collect memories you'll smile about for years.
+
+Thank you for being part of my life
+and for all the little moments that matter.
+
+Happy Birthday once again, Ruchi! 🎂💗
+
+Keep smiling, keep shining, and keep being YOU.
+
+From your favourite troublemaker. 🫶🏻`;
+
+// PERSONAL SETTINGS END HERE
+
+function show(id) {
+  document.getElementById(id).classList.remove("hidden");
+
+  document.getElementById(id).scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function unlock() {
+  const value = document.getElementById("password")
+    .value.trim().toLowerCase();
+
+  if (value === SECRET_PASSWORD.toLowerCase()) {
+    document.getElementById("lock").classList.add("hidden");
+
+    show("surprise");
+
+    for (let i = 0; i < 20; i++) {
+      setTimeout(makeHeart, i * 120);
+    }
+
+  } else {
+    document.getElementById("error").textContent =
+      "Oops! Try our special word again. 💗";
+  }
+}
+
+document.getElementById("password")
+  .addEventListener("keydown", function(event) {
+    if (event.key === "Enter") unlock();
+  });
+
+
+function answer(choice) {
+  const result = document.getElementById("quizResult");
+
+  if (choice === "C") {
+    result.textContent =
+      "CORRECT! 😂 Our friendship comes with the whole package! 💗";
+  } else if (choice === "A") {
+    result.textContent =
+      "Those random conversations deserve their own podcast! 🎤😂";
+  } else {
+    result.textContent =
+      "Guilty! Teasing is basically our unofficial friendship language. 😂";
+  }
+}
+
+function bonus(choice) {
+  document.getElementById("bonusResult").textContent =
+    choice === "me"
+      ? "Nice try, Ruchi! I'm definitely blaming you. 😂💗"
+      : "A confession! Finally, some honesty. 😭😂";
+}
+
+
+function openLetter() {
+  const letter = document.getElementById("letter");
+
+  letter.textContent = BIRTHDAY_LETTER;
+  letter.classList.remove("hidden");
+
+  letter.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
+
+  for (let i = 0; i < 8; i++) {
+    setTimeout(makeHeart, i * 150);
+  }
+}
+
+
+function openGift() {
+  document.getElementById("gift").textContent = "💝";
+
+  document.getElementById("giftMessage")
+    .classList.remove("hidden");
+
+  for (let i = 0; i < 15; i++) {
+    setTimeout(makeHeart, i * 130);
+  }
+}
+
+
+function makeHeart() {
+  const heart = document.createElement("div");
+
+  heart.className = "heart";
+
+  const symbols = ["💗", "💕", "💖", "✨", "🌸", "🎉"];
+
+  heart.textContent =
+    symbols[Math.floor(Math.random() * symbols.length)];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (18 + Math.random() * 20) + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+}
+
+
+function celebrate() {
+  document.getElementById("final").classList.remove("hidden");
+
+  document.getElementById("final").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  for (let i = 0; i < 60; i++) {
+    setTimeout(makeHeart, i * 75);
+  }
+}
+
+
+async function toggleMusic() {
+  const music = document.getElementById("music");
+  const button = document.getElementById("musicButton");
+  const status = document.getElementById("musicStatus");
+
+  if (music.paused) {
+    try {
+      await music.play();
+
+      button.textContent = "⏸ Pause Music";
+      status.textContent = "Enjoy your birthday soundtrack! 🎶";
+
+    } catch (error) {
+      status.textContent =
+        "Please upload music.mp3 to the website repository first.";
+    }
+
+  } else {
+    music.pause();
+    button.textContent = "▶ Play Music";
+    status.textContent = "Music paused.";
+  }
+}
+
+</script>
+
+</body>
+</html>
