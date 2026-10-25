@@ -372,7 +372,7 @@ footer {
       Your gift is a lifetime supply of laughter,
       silly conversations, happy memories,
       and someone who will keep annoying you
-      with absolutely no warning. 😂
+      with absolutely no warning. 😘🥰
 
       <br><br>
 
@@ -429,7 +429,7 @@ footer {
 
       <p>
         Made especially for you,<br>
-        by your favourite troublemaker. 😂🎀
+        by your Best Friend. 😂🎀
       </p>
 
     </div>
@@ -501,7 +501,7 @@ Happy Birthday once again, Ruchi! 🎂💗
 
 Keep smiling, keep shining, and keep being YOU.
 
-From your favourite troublemaker. 🫶🏻`;
+From your favourite . 🫶🏻`;
 
 // PERSONAL SETTINGS END HERE
 
@@ -649,32 +649,64 @@ async function toggleMusic() {
 }
 
 </script>
+  <!-- Interactive Birthday Memory Book --><section id="memoryBook" style="padding:35px 15px;text-align:center;background:linear-gradient(135deg,#fff0f8,#f8e1ff);border-radius:25px;margin:25px 0;color:#75405f;">  <h2 style="font-family:Georgia,serif;font-size:30px;">📖 Our Memory Book 💗</h2>
+  <p>Five little memories, one very special person. 🎀</p>  <div style="max-width:340px;margin:25px auto;background:white;padding:12px 12px 20px;border-radius:15px;box-shadow:0 8px 25px #d99bc566;"><img id="memoryPhoto"
+  src="IMG_20261025_170501.jpg"
+  alt="Our beautiful memory"
+  style="width:100%;height:340px;object-fit:cover;border-radius:10px;">
 
-<!-- Birthday Photo Gallery -->
-<section style="padding:25px 0;">
-  <h2>Our Beautiful Memories 💗</h2>
-  <p>Some moments with you are memories forever. 🎀</p>
+<h3 id="memoryTitle" style="font-family:Georgia,serif;">Memory 1 💕</h3>
+<p id="memoryCaption">A little moment to keep forever. 🎀</p>
 
-  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;">
+<p id="memoryCount" style="font-size:13px;">Page 1 of 5</p>
 
-    <img src="IMG_20261025_170501.jpg"
-         alt="Beautiful memory 1"
-         style="width:100%;height:220px;object-fit:cover;border-radius:15px;">
+  </div><button onclick="changeMemory(-1)"
+style="padding:12px 18px;margin:5px;border:0;border-radius:25px;background:#e7a1c7;color:white;font-size:15px;">
+⬅ Previous
+</button>
 
-    <img src="IMG_20261025_171633.jpg"
-         alt="Beautiful memory 2"
-         style="width:100%;height:220px;object-fit:cover;border-radius:15px;">
+<button onclick="changeMemory(1)"
+style="padding:12px 18px;margin:5px;border:0;border-radius:25px;background:#d94f91;color:white;font-size:15px;">
+Next Memory ➡
+</button>
 
-    <img src="IMG_20261025_172424_076.webp"
-         alt="Beautiful memory 3"
-         style="width:100%;height:220px;object-fit:cover;border-radius:15px;">
+</section><script>
+const birthdayMemories = [
+  {
+    photo: "IMG_20261025_170501.jpg",
+    caption: "A little moment to keep forever. 🎀"
+  },
+  {
+    photo: "IMG_20261025_171633.jpg",
+    caption: "Some memories always bring a smile. 💗"
+  },
+  {
+    photo: "IMG_20261025_172424_076.webp",
+    caption: "A beautiful memory with a special person. 🌸"
+  },
+  {
+    photo: "Snapchat-404596032.jpg",
+    caption: "One more page in our little story. 💕"
+  },
+  {
+    photo: "IMG_20261025_170552.jpg",
+    caption: "Here's to more happy memories ahead! 🎂"
+  }
+];
 
-    <img src="Snapchat-404596032.jpg"
-         alt="Beautiful memory 4"
-         style="width:100%;height:220px;object-fit:cover;border-radius:15px;">
+let currentMemory = 0;
 
-  </div>
-</section>
+function changeMemory(direction) {
+  currentMemory = (currentMemory + direction + birthdayMemories.length) % birthdayMemories.length;
+
+  const memory = birthdayMemories[currentMemory];
+
+  document.getElementById("memoryPhoto").src = memory.photo;
+  document.getElementById("memoryTitle").textContent = "Memory " + (currentMemory + 1) + " 💗";
+  document.getElementById("memoryCaption").textContent = memory.caption;
+  document.getElementById("memoryCount").textContent = "Page " + (currentMemory + 1) + " of " + birthdayMemories.length;
+}
+</script>
 
 </body>
 </html>
