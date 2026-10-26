@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+9<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -834,7 +834,107 @@ async function toggleMusic() {
 
   showMemory(0);
 })();
-</script>
+// 🎆 Ruchi's Birthday Fireworks
+const fireworksCanvas = document.getElementById("fireworksCanvas");
+const fireworksCtx = fireworksCanvas.getContext("2d");
+
+let fireworks = [];
+let fireworksAnimation = null;
+let fireworksRunning = false;
+
+function resizeFireworksCanvas() {
+fireworksCanvas.width = window.innerWidth;
+fireworksCanvas.height = window.innerHeight;
+}
+
+window.addEventListener("resize", resizeFireworksCanvas);
+
+function launchFirework() {
+const x = Math.random() * fireworksCanvas.width;
+const y = Math.random() * fireworksCanvas.height * 0.55;
+const hue = Math.random() * 360;
+const particles = 45 + Math.floor(Math.random() * 25);
+
+for (let i = 0; i < particles; i++) {
+const angle = (Math.PI * 2 * i) / particles;
+const speed = 1.5 + Math.random() * 4;
+
+fireworks.push({
+  x: x,
+  y: y,
+  vx: Math.cos(angle) * speed,
+  vy: Math.sin(angle) * speed,
+  life: 65,
+  maxLife: 65,
+  hue: hue,
+  size: 1.5 + Math.random() * 2.5
+});
+
+}
+}
+
+function animateFireworks() {
+if (!fireworksRunning) return;
+
+fireworksCtx.clearRect(
+0, 0, fireworksCanvas.width, fireworksCanvas.height
+);
+
+if (Math.random() < 0.07) launchFirework();
+
+fireworks = fireworks.filter(particle => particle.life > 0);
+
+fireworks.forEach(particle => {
+particle.x += particle.vx;
+particle.y += particle.vy;
+particle.vx *= 0.985;
+particle.vy *= 0.985;
+particle.vy += 0.025;
+particle.life--;
+
+fireworksCtx.beginPath();
+fireworksCtx.arc(
+  particle.x, particle.y, particle.size, 0, Math.PI * 2
+);
+fireworksCtx.fillStyle =
+  `hsla(${particle.hue},100%,65%,${particle.life / particle.maxLife})`;
+fireworksCtx.fill();
+
+});
+
+fireworksAnimation = requestAnimationFrame(animateFireworks);
+}
+
+function startBirthdayFireworks() {
+if (fireworksRunning) return;
+
+fireworksRunning = true;
+fireworksCanvas.style.display = "block";
+resizeFireworksCanvas();
+
+for (let i = 0; i < 5; i++) {
+setTimeout(launchFirework, i * 250);
+}
+
+animateFireworks();
+
+// Automatically stop after 15 seconds
+setTimeout(stopBirthdayFireworks, 15000);
+}
+
+function stopBirthdayFireworks() {
+fireworksRunning = false;
+
+if (fireworksAnimation) {
+cancelAnimationFrame(fireworksAnimation);
+}
+
+fireworks = [];
+fireworksCtx.clearRect(
+0, 0, fireworksCanvas.width, fireworksCanvas.height
+);
+fireworksCanvas.style.display = "none";
+  }</script>
 
 
 </body>
