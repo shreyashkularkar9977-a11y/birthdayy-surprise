@@ -364,7 +364,6 @@ footer {
     </button>
 
     <div id="final" class="hidden">
-      startBirthdayFireworks();
 
       <div class="big">🎉💗🎉</div>
 
@@ -615,7 +614,8 @@ function makeHeart() {
 }
 
 
-function celebrate() {
+function celebrate()
+startBirthdayFireworks();{
   document.getElementById("final").classList.remove("hidden");
 
   document.getElementById("final").scrollIntoView({
