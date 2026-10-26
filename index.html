@@ -612,8 +612,230 @@ async function toggleMusic() {
 }
 
 </script>
+  <!-- Ruchi's Birthday Memory Book -->
+<section id="ruchi-memory-book">
+  <div class="book-heading">
+    <span class="book-decoration">🎀 ✨ 🎀</span>
+    <h2>Our Little Memory Book</h2>
+    <p>Every picture holds a little piece of happiness. 💗</p>
+  </div>
 
+  <div class="memory-book">
+    <div class="book-spine"></div>
+
+    <div class="book-page">
+      <span class="page-label">A MEMORY FOR YOU 💌</span>
+
+      <div class="memory-photo-frame">
+        <img
+          id="memoryPhoto"
+          src="1ruchi1.jpg"
+          alt="Ruchi's special memory"
+        >
+      </div>
+
+      <h3 id="memoryTitle">A Beautiful Beginning 🌸</h3>
+      <p id="memoryCaption">
+        Some moments are too special to be forgotten. 💗
+      </p>
+
+      <div class="book-page-number">
+        <span id="memoryPageNumber">01</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="memory-controls">
+    <button id="previousMemory" type="button">← Previous</button>
+    <button id="nextMemory" type="button">Next Memory →</button>
+  </div>
+
+  <p class="memory-progress" id="memoryProgress">
+    Memory 1 of 5 💕
+  </p>
+</section>
+
+<style>
+#ruchi-memory-book {
+  padding: 45px 15px;
+  text-align: center;
+  color: #783b60;
+  font-family: Georgia, serif;
+}
+
+#ruchi-memory-book .book-heading h2 {
+  font-size: 30px;
+  margin: 12px 0;
+}
+
+#ruchi-memory-book .book-heading p {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+#ruchi-memory-book .book-decoration {
+  font-size: 26px;
+}
+
+#ruchi-memory-book .memory-book {
+  max-width: 370px;
+  margin: 28px auto 20px;
+  padding: 12px;
+  background: #b96b91;
+  border-radius: 14px 22px 22px 14px;
+  box-shadow: 0 12px 28px #9c527144;
+  position: relative;
+}
+
+#ruchi-memory-book .book-page {
+  background: linear-gradient(135deg, #fffaf5, #ffeaf3);
+  border: 2px solid #f3c4d8;
+  border-radius: 8px 16px 16px 8px;
+  padding: 22px 18px;
+  min-height: 400px;
+}
+
+#ruchi-memory-book .page-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+
+#ruchi-memory-book .memory-photo-frame {
+  padding: 8px;
+  background: white;
+  border: 1px solid #efd0dc;
+  box-shadow: 0 4px 12px #8e456322;
+  transform: rotate(-2deg);
+}
+
+#ruchi-memory-book .memory-photo-frame img {
+  display: block;
+  width: 100%;
+  height: 310px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+#ruchi-memory-book #memoryTitle {
+  margin: 24px 0 8px;
+  font-size: 22px;
+}
+
+#ruchi-memory-book #memoryCaption {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+#ruchi-memory-book .book-page-number {
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+#ruchi-memory-book .memory-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#ruchi-memory-book .memory-controls button {
+  background: #d94f91;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 13px 17px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#ruchi-memory-book .memory-controls button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+#ruchi-memory-book .memory-progress {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  margin-top: 16px;
+}
+</style>
+
+<script>
+(function () {
+  const memories = [
+    {
+      photo: "1ruchi1.jpg",
+      title: "A Beautiful Beginning 🌸",
+      caption: "Some moments are too special to be forgotten. 💗"
+    },
+    {
+      photo: "1Ruchi2.jpg",
+      title: "A Moment to Remember 💕",
+      caption: "A beautiful memory saved in our little book. 🎀"
+    },
+    {
+      photo: "1Ruchi3.jpg",
+      title: "Simply Special ✨",
+      caption: "Some pictures tell stories without saying a word. 💌"
+    },
+    {
+      photo: "1ruchi4.jpg",
+      title: "A Little Happiness 🌷",
+      caption: "May life always give you reasons to smile. 💗"
+    },
+    {
+      photo: "1Ruchi5.jpg",
+      title: "To More Beautiful Memories ❤️",
+      caption: "Happy Birthday, Ruchi! This little book is for you. 🎂"
+    }
+  ];
+
+  let currentMemory = 0;
+
+  const photo = document.getElementById("memoryPhoto");
+  const title = document.getElementById("memoryTitle");
+  const caption = document.getElementById("memoryCaption");
+  const pageNumber = document.getElementById("memoryPageNumber");
+  const progress = document.getElementById("memoryProgress");
+  const previous = document.getElementById("previousMemory");
+  const next = document.getElementById("nextMemory");
+
+  function showMemory(index) {
+    currentMemory = index;
+    const memory = memories[currentMemory];
+
+    photo.src = memory.photo;
+    photo.alt = memory.title;
+    title.textContent = memory.title;
+    caption.textContent = memory.caption;
+    pageNumber.textContent = String(currentMemory + 1).padStart(2, "0");
+    progress.textContent =
+      "Memory " + (currentMemory + 1) + " of " + memories.length + " 💕";
+
+    previous.disabled = currentMemory === 0;
+    next.disabled = currentMemory === memories.length - 1;
+  }
+
+  previous.addEventListener("click", function () {
+    if (currentMemory > 0) showMemory(currentMemory - 1);
+  });
+
+  next.addEventListener("click", function () {
+    if (currentMemory < memories.length - 1) showMemory(currentMemory + 1);
+  });
+
+  photo.addEventListener("error", function () {
+    caption.textContent =
+      "This photo could not load. Please check its filename in GitHub.";
+  });
+
+  showMemory(0);
+})();
 </script>
+
 
 </body>
 </html>
