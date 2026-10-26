@@ -600,7 +600,7 @@ function makeHeart() {
 
   heart.className = "heart";
 
-  const symbols = ["💗", "💕", "💖", "✨", "🌸", "🎉"];
+  const symbols = ["💗", "💕", "💖","🍁","💫","🌿","✨","🌷","🦜","🎊","🧿","✨", "🌸", "🎉"];
 
   heart.textContent =
     symbols[Math.floor(Math.random() * symbols.length)];
@@ -614,43 +614,24 @@ function makeHeart() {
 }
 
 
-function celebrate()
-startBirthdayFireworks();{function celebrate() {
-    // Show the birthday message first
+function celebrate() {
     document.getElementById("final").classList.remove("hidden");
 
-    // Start fireworks without blocking the birthday message
     try {
         startBirthdayFireworks();
     } catch (error) {
         console.log("Fireworks error:", error);
     }
 
-    // Scroll to the birthday message
     document.getElementById("final").scrollIntoView({
         behavior: "smooth",
         block: "start"
     });
 
-    // Create floating hearts
     for (let i = 0; i < 60; i++) {
         setTimeout(makeHeart, i * 75);
     }
-  }
-  document.getElementById("final").classList.remove("hidden");
-
-  document.getElementById("final").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-
-  for (let i = 0; i < 60; i++) {
-    setTimeout(makeHeart, i * 75);
-  }
 }
-
-
-async function toggleMusic() {
   const music = document.getElementById("music");
   const button = document.getElementById("musicButton");
   const status = document.getElementById("musicStatus");
@@ -790,13 +771,13 @@ async function toggleMusic() {
   const memories = [
     {
       photo: "1ruchi1.jpg",
-      title: "A Beautiful Beginning 🌸",
-      caption: "Some moments are too special to be forgotten. 💗"
+      title: "A Beautiful Girl 🌸",
+      caption: "Some moments are too special to you. 💗"
     },
     {
       photo: "1Ruchi2.jpg",
-      title: "A Moment to Remember 💕",
-      caption: "A beautiful memory saved in our little book. 🎀"
+      title: "A Moment  💕",
+      caption: "A beautiful memory saved in your little book. 🎀"
     },
     {
       photo: "1Ruchi3.jpg",
