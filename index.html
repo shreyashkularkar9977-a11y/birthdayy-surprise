@@ -525,6 +525,7 @@ function unlock() {
     document.getElementById("lock").classList.add("hidden");
 
     show("surprise");
+    document.getElementById("ruchi-memory-book").classList.remove("hidden");
 
     for (let i = 0; i < 20; i++) {
       setTimeout(makeHeart, i * 120);
